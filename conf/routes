@@ -5,6 +5,14 @@
 # Home page
 GET     /                           controllers.Application.index
 GET     /register                   controllers.Application.register
+POST	/users			controllers.Application.users
+PUT	/users/:id		controllers.Application.userssave(id: Long)
+GET	/users/:id		controllers.Application.usersget(id: Long)
+POST	/users/authenticate	controllers.Application.authenticate
+POST	/directions		controllers.Application.directions
+GET	/users/:id/subjects	controllers.Application.subjects(id: Long)
+POST	/users/:id/subjects/:subjectid/review	controllers.Application.subjectsave(id: Long, subjectid: Long)
+GET	/users/:id/recomendations	controllers.Application.recommend(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET      /assets/*file               controllers.Assets.at(path="/public", file)
