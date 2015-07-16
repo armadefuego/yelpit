@@ -26,5 +26,9 @@ class ApplicationSpec extends Specification {
       contentType(home) must beSome.which(_ == "text/html")
       contentAsString(home) must contain ("Yelpit!")
     }
+    "send 400 on a directions request" in new WithApplication{
+      route(FakeRequest(POST, "/directions")) must beSome.which (status(_) == 400)
+    }
+
   }
 }

@@ -5,7 +5,15 @@ import play.api.mvc._
 import play.api.libs.json._
 import play.api.libs.functional.syntax._
 
-class Application extends Controller {
+import models._
+
+class Application extends Controller with Secured {
+
+  implicit val rds = (
+    (__ \ 'id).read[Long] and
+    (__ \ 'user).read[User] and
+    (__ \ 'reviews).read[String]
+  ) tupled
 
   def index = Action {
     Ok(views.html.index())
@@ -15,8 +23,13 @@ class Application extends Controller {
   	Ok(views.html.register())
   }
 
-  def users = Action {
-        BadRequest(Json.obj("status" ->"KO", "message" -> "WTF?"))
+  def users = Action(parse.json) { request =>
+    request.body.validate[( Long, User, String )].map{
+        case ( id, user, reviews) =>
+          Ok(Json.obj("id" -> id, "username" -> user.username, "password" -> user.password, "reviews" -> "[]"))
+      }.recoverTotal{
+        e => BadRequest(Json.obj("status" ->"KO", "message" -> "WTF?"))
+      }
   }
 
   def userssave(id: Long) = Action {
