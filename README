@@ -1,0 +1,152 @@
+A yelp hack
+
+=================================
+
+// API definition
+
+// all API end points except for /users POST and /users/authenticate require a query parameter token="DJGJDGJ"
+
+/users POST
+
+        request:
+
+                {
+                        "id": "SFJDGJGDJDGJDG",
+                        "username": "blah@blah.com",
+                        "password": "kmdskgmrwkmgjfsg",
+                        "reviews": []
+                }
+
+        response:
+
+                {
+                        "id": "SFJDGJGDJDGJDG",
+                        "username": "blah@blah.com",
+                        "password": "kmdskgmrwkmgjfsg",
+                        "reviews": []
+                }
+
+/users/:id PUT 
+
+        request / response:
+
+                {
+                        "id": "SFJDGJGDJDGJDG",
+                        "username": "blah@blah.com",
+                        "password": "kmdskgmrwkmgjfsg",
+                        "reviews": [
+                                "subjectId": "ABCD",
+                                "rating": 2.7,
+                                "name": "Spicy Food"
+                        ]
+                }
+
+/users/:id GET 
+
+        response:
+
+                {
+                        "id": "SFJDGJGDJDGJDG",
+                        "username": "blah@blah.com",
+                        "password": "kmdskgmrwkmgjfsg",
+                        "reviews": []
+                }
+
+/users/authenticate POST
+
+        request: 
+
+                {
+                        "username": "blah@blah.com",
+                        "password": "kmdskgmrwkmgjfsg"        
+                }
+
+        response: 
+
+                {
+                        "token": "ANGJDGJSFDGJG"
+                }
+
+/directions POST
+
+        request: 
+
+                {
+                        start: {
+                                "address1": "123 Main Road",
+                                "address2": "2nd Floor",
+                                "city": "Philadelphia",
+                                "country": "United States",
+                                "state": "Pennsylvania",
+                                "postalCode": "12345"
+                        }, 
+                        end: {
+                                "address1": "123 Main Road",
+                                "address2": "2nd Floor",
+                                "city": "Philadelphia",
+                                "country": "United States",
+                                "state": "Pennsylvania",
+                                "postalCode": "12345"
+                        }
+                }
+
+        response: 
+
+                {
+                        totalDistance: 8.7,
+                        distanceUnit: 'Miles',
+                        steps: [
+                                "instructions": "Turn left on Side Street and continue"
+                                "distance": 1.3
+                                "distanceUnit": 'Miles'
+                        ]
+                }
+
+/users/:id/subjects?reviewed=false GET
+
+        response:
+
+        {
+                "subjectId": "dgnjdgndjgndgnjdgn",
+                "name": "Thai Food"
+        }
+
+/users/:id/subjects/:subjectId/review POST
+
+        request:
+
+        {
+                "rating": 2.7
+        }
+
+        response: 
+
+        {
+                "subjectId": "dgnjdgndjgndgnjdgn",
+                "name": "Thai Food",
+                "rating": 2.7
+        }
+
+
+/users/:id/recommendations GET
+
+        response:
+
+                {
+                        "subjectId": "dgnjdgndjgndgnjdgn",
+                        "name": "Thai Food",
+                        "tags": ["Spicy", "Thai"],
+                        "address": {
+                                "address1": "123 Main Road",
+                                "address2": "2nd Floor",
+                                "city": "Philadelphia",
+                                "country": "United States",
+                                "state": "Pennsylvania",
+                                "postalCode": "12345"
+                        },
+                        "rating": 3.5,
+                        "approximateCost": 10.00, // per person
+                        "comments": "This restaurant has received a lot of positive reviews recently!"
+                }
+
+
