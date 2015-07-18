@@ -50,6 +50,17 @@ object User {
   }
   
   /**
+   * Retrieve a User from username.
+   */
+  def findById(id: Long): Option[User] = {
+    DB.withConnection { implicit connection =>
+      SQL("select * from User where id = {id}").on(
+        'id -> id
+      ).as(User.simple.singleOpt)
+    }
+  }
+  
+  /**
    * Retrieve all users.
    */
   def findAll: Seq[User] = {
