@@ -16,7 +16,11 @@ class Application extends Controller with Secured {
   ) tupled
 
   def index = Action {
-    Ok(views.html.index("Yelpit!"))
+    Ok(views.html.index())
+  }
+
+  def register = Action {
+  	Ok(views.html.register())
   }
 
   def users = Action(parse.json) { request =>
