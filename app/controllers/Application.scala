@@ -37,7 +37,11 @@ class Application extends Controller with Secured {
   }
 
   def usersget(id: Long) = Action {
-        BadRequest(Json.obj("status" ->"KO", "message" -> "WTF?"))
+    User.findById(id) match {
+      case Some(s) =>  Ok(Json.obj("id" -> id, "username" -> s.username, "password" -> s.password, "reviews" -> "[]"))
+      case None => BadRequest(Json.obj("status" ->"KO", "message" -> "WTF?"))
+
+    }
   }
 
   def authenticate = Action {
