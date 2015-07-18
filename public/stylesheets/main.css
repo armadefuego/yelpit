@@ -1,10 +1,14 @@
 #login-box {
   background-color: #DFE2DB;
   top: 200px;
-  border: 1px dashed #ddd;
+  border: 1px dashed #DFE2DB;
   box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
   padding-top: 15px;
   padding-bottom: 15px;
+}
+
+.error {
+  border: 1px solid #FF0000;
 }
 
 .js-login-button {
