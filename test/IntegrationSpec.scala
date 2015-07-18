@@ -24,7 +24,7 @@ class IntegrationSpec extends Specification {
       browser.pageSource must contain("Yelpit!")
     }
   }
-/*
+
   "User" should {
   	   "save a user to the DB"  in new WithApplication {
   	  val uj = Json.obj("username" -> "example@example.com", "password" -> "BadPassword")
@@ -34,5 +34,5 @@ class IntegrationSpec extends Specification {
     }
 
   }
-*/
+
 }
